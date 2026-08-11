@@ -7,7 +7,7 @@ let songs = [];
 let currentIndex = 0;
 
 let player;
-
+let songsLoaded = false;
 let playerReady = false;
 
 const songList = document.getElementById("songList");
@@ -54,7 +54,11 @@ fetch("songs.json")
 
         songs = data;
 
+        songsLoaded = true;
+
         renderPlaylist();
+
+        initializePlayer();
 
     });
 
@@ -162,17 +166,26 @@ function onYouTubeIframeAPIReady() {
 // Player Ready
 // -----------------------------
 
+
+function initializePlayer() {
+
+    if (!playerReady) return;
+
+    if (!songsLoaded) return;
+
+    if (songs.length === 0) return;
+
+    loadSong();
+
+}
+
 function onPlayerReady() {
 
-    console.log("YouTube Player Ready");
+    console.log("Player Ready");
 
     playerReady = true;
 
-    if (songs.length > 0) {
-
-        loadSong();
-
-    }
+    initializePlayer();
 
 }
 
@@ -180,7 +193,7 @@ function onPlayerReady() {
 // Load Song
 // -----------------------------
 
-function loadSong() {
+function loadSong(autoplay = false) {
 
     if (!playerReady || songs.length === 0) return;
 
@@ -192,9 +205,15 @@ function loadSong() {
 
     cover.src = song.cover;
 
-    player.cueVideoById({
-        videoId: song.youtubeId
-});
+    if (autoplay) {
+        player.loadVideoById({
+            videoId: song.youtubeId
+        });
+    } else {
+        player.cueVideoById({
+            videoId: song.youtubeId
+        });
+    }
 
     playPauseBtn.innerHTML = "▶";
 
@@ -236,6 +255,8 @@ document.getElementById("prev").onclick = () => {
 
     if (songs.length === 0) return;
 
+    if (!playerReady) return;
+
     currentIndex--;
 
     if (currentIndex < 0) {
@@ -244,9 +265,7 @@ document.getElementById("prev").onclick = () => {
 
     }
 
-    loadSong();
-
-    player.playVideo();
+    loadSong(true);
 
 };
 
@@ -266,6 +285,8 @@ function nextSong() {
 
     if (songs.length === 0) return;
 
+    if (!playerReady) return;
+
     currentIndex++;
 
     if (currentIndex >= songs.length) {
@@ -274,9 +295,7 @@ function nextSong() {
 
     }
 
-    loadSong();
-
-    player.playVideo();
+    loadSong(true);
 
 }
 
