@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "title": "Tandav",
+    "artist": "Shiv",
+    "youtubeId": "hMBKmQEPNzI",
+    "cover": "covers/song1.jpg"
+  },
+  {
+    "id": 2,
+    "title": "Hanuman Chalisa",
+    "artist": "Hanumaan Ji",
+    "youtubeId": "9q8kkmCa9GY",
+    "cover": "covers/song2.jpg"
+  },
+  {
+    "id": 3,
+    "title": "Ram Siya Ram",
+    "artist": "Ram ji",
+    "youtubeId": "Tl4bQBfOtbg",
+    "cover": "covers/song3.jpg"
+  }
+]

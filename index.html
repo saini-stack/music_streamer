@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Music Streamer</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <!-- Background -->
+    <div class="background"></div>
+
+    <!-- Dark Overlay -->
+    <div class="overlay"></div>
+
+    <!-- Playlist Toggle -->
+    <button id="menuBtn" class="menu-btn">
+        ☰
+    </button>
+
+    <!-- Playlist -->
+    <aside class="playlist" id="playlist">
+
+        <div class="playlist-header">
+
+            <h2>Playlist</h2>
+
+            <button id="closePlaylist">
+                ✕
+            </button>
+
+        </div>
+
+        <div id="songList"></div>
+
+    </aside>
+
+    <!-- Main Player -->
+    <main class="player">
+
+        <div class="player-card">
+
+            <img
+                id="cover"
+                class="cover"
+                src="covers/default.jpg"
+                alt="Album Cover"
+            >
+
+            <h1 id="title">
+                Select a Song
+            </h1>
+
+            <h3 id="artist"></h3>
+
+            <!-- Controls -->
+            <div class="controls">
+
+                <button id="prev" class="control-btn">
+                    ⏮
+                </button>
+
+                <button id="playPause" class="play-btn">
+                    ▶
+                </button>
+
+                <button id="next" class="control-btn">
+                    ⏭
+                </button>
+
+            </div>
+
+            <!-- Progress -->
+            <div class="progress-container">
+
+                <span id="currentTime">
+                    0:00
+                </span>
+
+                <input
+                    type="range"
+                    id="progress"
+                    min="0"
+                    max="100"
+                    value="0"
+                >
+
+                <span id="duration">
+                    0:00
+                </span>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Hidden YouTube Player -->
+    <div id="player"></div>
+
+    <!-- YouTube API -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+
+    <!-- App -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>

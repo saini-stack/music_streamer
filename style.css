@@ -1,0 +1,457 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    overflow: hidden;
+    color: white;
+    background: #000;
+}
+
+/* ---------------- Background ---------------- */
+
+.background {
+
+    position: fixed;
+    inset: 0;
+
+    background: url("covers/background.jpg") center center/cover no-repeat;
+
+    z-index: -2;
+
+}
+
+.overlay {
+
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0, 0, 0, .45);
+
+    backdrop-filter: blur(6px);
+
+    z-index: -1;
+
+}
+
+/* ---------------- Player ---------------- */
+
+.player {
+
+    width: 100%;
+    height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+}
+
+.player-card {
+
+    width: 550px;
+
+    padding: 45px;
+
+    border-radius: 28px;
+
+    background: rgba(255, 255, 255, .08);
+
+    backdrop-filter: blur(18px);
+
+    text-align: center;
+
+    box-shadow: 0 20px 60px rgba(0, 0, 0, .35);
+
+}
+
+/* ---------------- Album ---------------- */
+
+.cover {
+
+    width: 240px;
+    height: 240px;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    border: 8px solid rgba(255, 255, 255, .12);
+
+    box-shadow: 0 15px 40px rgba(0, 0, 0, .35);
+
+    transition: .3s;
+
+}
+
+.cover.playing {
+
+    animation: spin 30s linear infinite;
+
+}
+
+@keyframes spin {
+
+    from {
+
+        transform: rotate(0deg);
+
+    }
+
+    to {
+
+        transform: rotate(360deg);
+
+    }
+
+}
+
+/* ---------------- Titles ---------------- */
+
+#title {
+
+    margin-top: 28px;
+
+    font-size: 46px;
+
+    font-weight: bold;
+
+}
+
+#artist {
+
+    margin-top: 12px;
+
+    margin-bottom: 35px;
+
+    font-size: 24px;
+
+    color: rgba(255, 255, 255, .85);
+
+    font-weight: normal;
+
+}
+
+/* ---------------- Controls ---------------- */
+
+.controls {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 28px;
+
+}
+
+.control-btn {
+
+    width: 58px;
+    height: 58px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    color: white;
+
+    background: rgba(255, 255, 255, .15);
+
+    font-size: 22px;
+
+    transition: .25s;
+
+}
+
+.play-btn {
+
+    width: 78px;
+    height: 78px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    background: white;
+
+    color: black;
+
+    font-size: 34px;
+
+    transition: .25s;
+
+}
+
+.control-btn:hover,
+.play-btn:hover {
+
+    transform: scale(1.08);
+
+}
+
+.control-btn:active,
+.play-btn:active {
+
+    transform: scale(.95);
+
+}
+
+/* ---------------- Progress ---------------- */
+
+.progress-container {
+
+    margin-top: 35px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+}
+
+.progress-container span {
+
+    width: 45px;
+
+    font-size: 15px;
+
+}
+
+#progress {
+
+    flex: 1;
+
+    cursor: pointer;
+
+}
+
+/* ---------------- Playlist Button ---------------- */
+
+.menu-btn {
+
+    position: fixed;
+
+    top: 20px;
+
+    left: 20px;
+
+    width: 55px;
+
+    height: 55px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: rgba(0, 0, 0, .55);
+
+    backdrop-filter: blur(12px);
+
+    color: white;
+
+    font-size: 24px;
+
+    cursor: pointer;
+
+    z-index: 1001;
+
+    transition: .25s;
+
+}
+
+.menu-btn:hover {
+
+    transform: scale(1.05);
+
+}
+
+/* ---------------- Playlist ---------------- */
+
+.playlist {
+
+    position: fixed;
+
+    top: 0;
+
+    left: -340px;
+
+    width: 320px;
+
+    height: 100vh;
+
+    background: rgba(15, 15, 15, .95);
+
+    backdrop-filter: blur(20px);
+
+    transition: left .35s ease;
+
+    overflow-y: auto;
+
+    padding: 25px;
+
+    z-index: 1000;
+
+}
+
+.playlist.show {
+
+    left: 0;
+
+}
+
+.playlist-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 25px;
+
+}
+
+.playlist-header button {
+
+    border: none;
+
+    background: transparent;
+
+    color: white;
+
+    font-size: 22px;
+
+    cursor: pointer;
+
+}
+
+/* ---------------- Songs ---------------- */
+
+.song {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 12px;
+
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    margin-bottom: 10px;
+
+    transition: .25s;
+
+}
+
+.song:hover {
+
+    background: rgba(255, 255, 255, .08);
+
+}
+
+.song.active {
+
+    background: rgba(255, 255, 255, .12);
+
+}
+
+.song img {
+
+    width: 58px;
+
+    height: 58px;
+
+    border-radius: 10px;
+
+    object-fit: cover;
+
+}
+
+.song-info {
+
+    display: flex;
+
+    flex-direction: column;
+
+}
+
+.song-title {
+
+    font-size: 17px;
+
+    font-weight: bold;
+
+}
+
+.song-artist {
+
+    font-size: 14px;
+
+    color: rgba(255, 255, 255, .75);
+
+    margin-top: 4px;
+
+}
+
+/* ---------------- Hidden YouTube Player ---------------- */
+
+#player {
+
+    position: absolute;
+
+    left: -9999px;
+
+    width: 1px;
+
+    height: 1px;
+
+}
+
+/* ---------------- Responsive ---------------- */
+
+@media(max-width:700px) {
+
+    .player-card {
+
+        width: 90%;
+
+        padding: 30px;
+
+    }
+
+    .cover {
+
+        width: 200px;
+        height: 200px;
+
+    }
+
+    #title {
+
+        font-size: 34px;
+
+    }
+
+    .progress-container {
+
+        width: 100%;
+
+    }
+
+}
